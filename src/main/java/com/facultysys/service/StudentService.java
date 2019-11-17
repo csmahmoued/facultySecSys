@@ -2,8 +2,10 @@ package com.facultysys.service;
 
 import com.facultysys.errors.NotFoundException;
 import com.facultysys.mapper.Mapper;
+import com.facultysys.model.Department;
 import com.facultysys.model.Student;
 import com.facultysys.modelAndView.StudentModelView;
+import com.facultysys.repository.DepartmentRepository;
 import com.facultysys.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -18,6 +20,10 @@ public class StudentService {
 
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private DepartmentService departmentService;
+
 
     @Autowired
     private Mapper mapper;
@@ -37,7 +43,7 @@ public class StudentService {
 
     public List<StudentModelView> getStudentsByState(String state){
         try {
-            var students=studentRepository.findByStudState(state);
+            var students=studentRepository.findByStudStateContains(state);
             var studentModel =students.stream().map(student -> mapper.covertToStudentViewModel(student)).collect(Collectors.toList());
             return  studentModel;
         }catch (NoSuchElementException e){
@@ -60,30 +66,40 @@ public class StudentService {
 
   }
 
-    public StudentModelView getStudentByPid(int id){
+    public List<StudentModelView> getStudentByPid(String id){
 
-      try{
-          var student=studentRepository.findByStudpid(id);
-          var studentModel=mapper.covertToStudentViewModel(student);
-          return  studentModel;
-      }
-      catch (NoSuchElementException e){
-          throw new NotFoundException("student not exits");
-      }
+        try {
+            var students=studentRepository.findByStudpidContains(id);
+            var studentModel =students.stream().map(student -> mapper.covertToStudentViewModel(student)).collect(Collectors.toList());
+            return  studentModel;
+        }catch (NoSuchElementException e){
+            throw new NotFoundException("there are not students");
+        }
 
     }
 
-    public StudentModelView getStudentByNationalId(int id){
+    public List<StudentModelView> getStudentByNationalId(String id) {
 
-      try{
-          var student=studentRepository.findByStudNationalId(id);
-          var studentModel=mapper.covertToStudentViewModel(student);
-          return  studentModel;
-      }
-      catch (NoSuchElementException e){
-          throw new NotFoundException("student not exits");
-      }
+        try {
+            var students = studentRepository.findByStudNationalIdContains(id);
+            var studentModel = students.stream().map(student -> mapper.covertToStudentViewModel(student)).collect(Collectors.toList());
+            return studentModel;
+        } catch (NoSuchElementException e) {
+            throw new NotFoundException("there are not students");
+        }
 
+    }
+
+    public List<StudentModelView> getStudentByDepartment(String name){
+
+        try {
+            var department=departmentService.getDepartmentByName(name);
+            var students = studentRepository.findByDepartment(department);
+            var studentModel = students.stream().map(student -> mapper.covertToStudentViewModel(student)).collect(Collectors.toList());
+            return studentModel;
+        } catch (NoSuchElementException e) {
+            throw new NotFoundException("there are not students");
+        }
     }
 
 

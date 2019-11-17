@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/fci/staff")
 public class StaffController {
     @Autowired
     private StaffService staffService;
@@ -24,28 +24,28 @@ public class StaffController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/all-staff")
+    @GetMapping("/public/all-staff")
     public List<StaffModelView>  StaffAll(){
-
         return staffService.getAllStaffInfo();
+
     }
 
-    @GetMapping("/all-staff-type/{type}")
-    public List<StaffModelView>  StaffAllByType(String type){
+    @GetMapping("/admin/all-staff-type/{type}")
+    public List<StaffModelView>  StaffAllByType(@PathVariable String type){
         return staffService.getAllStaffInfoByType(type);
     }
 
-    @GetMapping("/staff/{id}")
+    @GetMapping("/public/staff/{id}")
     public ResponseEntity<StaffModelView> getStaff(@PathVariable int id){
         return new ResponseEntity<>(staffService.getStaff(id),HttpStatus.OK);
     }
 
-    @GetMapping("/staff-by-name/{name}")
+    @GetMapping("/public/staff-by-name/{name}")
     public ResponseEntity<StaffModelView> getStaffByName(@PathVariable String name){
         return new ResponseEntity<>(staffService.getStaffByName(name),HttpStatus.OK);
     }
 
-    @PostMapping("/add-staff")
+    @PostMapping("/admin/add-staff")
     public ResponseEntity<Staff> addStaff(@RequestBody StaffModelView staffModelView){
         staffService.addStaff(staffModelView);
 
@@ -54,7 +54,7 @@ public class StaffController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @DeleteMapping("del-staff/{id}")
+    @DeleteMapping("/admin/del-staff/{id}")
     public ResponseEntity<Void> delete(@PathVariable int id)
     {
         staffService.deleteStaff(id);

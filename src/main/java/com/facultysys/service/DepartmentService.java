@@ -28,6 +28,17 @@ public class DepartmentService  {
 
     }
 
+    public Department getDepartmentByName(String deptName){
+
+        try {
+            return departmentRepository.findByDeptName(deptName);
+        }catch (Exception e){
+            throw new NotFoundException("department not found ");
+        }
+
+    }
+
+
     public Department addDepartment(Department department){
         return  departmentRepository.save(department);
     }

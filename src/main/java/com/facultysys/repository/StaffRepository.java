@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface StaffRepository extends JpaRepository<Staff,Integer> {
 
-    List<Staff> findByStaffType(String type);
-    Staff findByStaffName(String name);
+    List<Staff> findByStaffTypeContains(String type);
+    Staff findByStaffNameContains(String name);
 
 
 

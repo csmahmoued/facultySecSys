@@ -47,6 +47,7 @@ public class Mapper {
         viewModel.setStudEmail(student.getStudEmail());
         viewModel.setStudPhone(student.getStudPhone());
         viewModel.setStudbday(student.getStudbday());
+        viewModel.setDeptName(student.getDepartment().getDeptName());
         viewModel.setDeptId(String.valueOf(student.getDepartment().getDeptId()));
         return viewModel;
     }
@@ -61,6 +62,9 @@ public class Mapper {
         viewModel.setCourseLectNo(courses.getCourseLectNo());
         viewModel.setCourseName(courses.getCourseName());
         viewModel.setCourseTerm(courses.getCourseTerm());
+        viewModel.setCourseYear(courses.getCourseYear());
+        viewModel.setStaffName(courses.getStaff().getStaffName());
+        viewModel.setDeptName(courses.getDepartment().getDeptName());
         return viewModel;
     }
 
@@ -87,8 +91,8 @@ public class Mapper {
         var studentEnity=new Student();
 
         studentEnity.setStudid(Integer.parseInt(viewModel.getStudid()));
-        studentEnity.setStudpid(Integer.parseInt(viewModel.getStudpid()));
-        studentEnity.setStudNationalId(Integer.parseInt(viewModel.getStudNationalId()));
+        studentEnity.setStudpid(viewModel.getStudpid());
+        studentEnity.setStudNationalId(viewModel.getStudNationalId());
         studentEnity.setStudName(viewModel.getStudName());
         studentEnity.setStudPhone(viewModel.getStudPhone());
         studentEnity.setStudEmail(viewModel.getStudEmail());
@@ -115,9 +119,10 @@ public class Mapper {
     public CourseDegree convertToCourseDegreeEntity(DegreeCourseModelView modelView){
 
         var course=courseRepository.findById(modelView.getCourseid()).get();
-        var student=studentRepository.findById(modelView.getStudpid()).get();
+        var student=studentRepository.findById(Integer.parseInt(modelView.getStudpid())).get();
         var degreeEnity=new CourseDegree();
         degreeEnity.setId(modelView.getId());
+
         degreeEnity.setCourses(course);
         degreeEnity.setStudent(student);
         degreeEnity.setDegree(modelView.getDegree());
@@ -135,6 +140,7 @@ public class Mapper {
        viewModel.setCourseid(courseDegree.getCourses().getCourseId());
        viewModel.setCoursename(courseDegree.getCourses().getCourseName());
        viewModel.setMdegree(makeDegree(courseDegree.getDegree()));
+       viewModel.setStudName(courseDegree.getStudent().getStudName());
 
         return  viewModel;
     }
@@ -148,6 +154,7 @@ public class Mapper {
         viewModel.setStaffDegree(staff.getStaffDegree());
         viewModel.setStaffName(staff.getStaffName());
         viewModel.setStaffType(staff.getStaffType());
+        viewModel.setDeptName(staff.getDepartment().getDeptName());
 
         viewModel.setStaffId(String.valueOf(staff.getStaffId()));
         return  viewModel;

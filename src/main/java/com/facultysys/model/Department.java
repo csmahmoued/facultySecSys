@@ -1,11 +1,10 @@
 package com.facultysys.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -21,6 +20,24 @@ public class Department {
     private  String deptMission;
     @Lob
     private String deptActivities;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "department", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Student> student;
+
+    public Department(){}
+
+    public Department(String deptName){
+        this.deptName=deptName;
+    }
+
+    public List<Student> getStudent() {
+        return student;
+    }
+
+    public void setStudent(List<Student> student) {
+        this.student = student;
+    }
 
     public int getDeptId() {
         return deptId;

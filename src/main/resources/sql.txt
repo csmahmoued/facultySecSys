@@ -1,0 +1,48 @@
+#http service
+
+# (1) student service
+#--------------------
+# get student by state        ..... localhost:8082/fci/admin/all-student-state/{state}
+# get student by pid          ..... localhost:8082/fci/admin/studentby-pid/{pid}
+# get student by nationalId   ..... localhost:8082/fci/admin/studentby-nationalid/{studNationalId}
+# get student by id           ......localhost:8082/fci/admin/student/{id}
+# get all student             ......localhost:8082/fci/admin/all-student
+# get student in depatment    ......localhost:8082/fci/admin/all-student-department/{deptName}
+# del student                 ......localhost:8082/fci/admin/del-student/{id}
+# post studnet                ..... localhost:8082/fci/admin/add-student
+
+# (2) department service
+#--------------------
+# get all department          ...... localhost:8082/fci/depart/public/all-department
+# del department              ...... localhost:8082/fci/depart/admin/del-department/{id}
+# get department by id         ...... localhost:8082/fci/depart/public/department/{id}
+# post department              ......localhost:8082/fci/depart/admin/add-department
+
+# (3) staff service
+#--------------------
+# get all staff               ......localhost:8082/fci/staff/public/all-staff
+# get staff by name           ..... localhost:8082/fci/staff/public/staff-by-name/{name}
+# get staff by type           ..... localhost:8082/fci/staff/admin/all-staff-type/{type}
+# get staff by id             ..... localhost:8082/fci/staff/public/staff/{id}
+# post staff                  ..... localhost:8082/fci/staff/admin/add-staff
+# del staff by id             ..... localhost:8082/api/del-staff/{id}
+
+# (4) course service
+#--------------------
+# get all course                ..... localhost:8082/fci/public/all-course
+# get by year(stage)            ..... localhost:8082/fci/public/year-course/{stage}
+# get course by term            ..... localhost:8082/fci/public/term-course/{term}
+# get department course         ...... localhost:8082/fci/public/department-course/{deptName}
+# get course by id              ..... localhost:8082/fci/public/course/{id}
+# post course                   ..... localhost:8082/fci/admin/add-course
+# del course by id               ....  localhost:8082/fci/admin/del-course/{courseId}
+
+# (5) course service
+#--------------------
+
+# del degree by id              ...... localhost:8082/fci/degree/admin/del-degree/{id}
+# post degree                   ...... localhost:8082/fci/degree/admin/add-degree
+# get degree by id              ...... localhost:8082/fci/degree/student/student-degree/{id}
+# get all degree                ...... http://localhost:8082/fci/degree/admin/all-degrees
+# get total degree              ...... http://localhost:8082/fci/degree/student/student-total-degree/{studId}
+

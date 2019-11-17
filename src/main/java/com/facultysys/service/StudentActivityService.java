@@ -21,6 +21,9 @@ public class StudentActivityService {
         return  sp.findById(id).get();
     }
 
+    public List<StudentActivity> searchActivity(String activity){
+        return sp.findByActivityDescIsLike(activity);
+    }
     public StudentActivity addActivity(StudentActivity studentActivity){
         return sp.save(studentActivity);
     }

@@ -44,7 +44,17 @@ public class WebSecurityCofig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .authorizeRequests()
-                .antMatchers( "/api/**").hasRole("student")
+                .antMatchers( "/fci/degree/student/**").hasAnyRole("student","admin")
+                .antMatchers( "/fci/admin/**").hasRole("admin")
+                .antMatchers( "/fci/staff/admin/**").hasRole("admin")
+                .antMatchers( "/fci/depart/admin/**").hasRole("admin")
+                .antMatchers( "/fci/degree/admin/**").hasRole("admin")
+
+                .antMatchers( "/fci/public/**").permitAll()
+                .antMatchers( "/fci/staff/public/**").permitAll()
+                .antMatchers( "/fci/depart/public/**").permitAll()
+                .antMatchers( "/fci/student/public/**").permitAll()
+
                 .and()
                 .csrf().disable()
                 .formLogin().disable();

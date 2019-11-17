@@ -15,6 +15,15 @@ public class StudentModelView {
     private  String studEmail;
     private  String studPhone;
     private  String studbday;
+    private String deptName;
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
 
     @NotNull(message = "department id can not be null ")
     private String deptId;

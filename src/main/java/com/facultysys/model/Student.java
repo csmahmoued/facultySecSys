@@ -12,8 +12,8 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int studid;
-    private int studpid;
-    private int studNationalId;
+    private String studpid;
+    private String studNationalId;
     private  String studName;
     private String studCity;
     private String studState;
@@ -42,19 +42,19 @@ public class Student {
         this.studid = studid;
     }
 
-    public int getStudpid() {
+    public String getStudpid() {
         return studpid;
     }
 
-    public void setStudpid(int studpid) {
+    public void setStudpid(String studpid) {
         this.studpid = studpid;
     }
 
-    public int getStudNationalId() {
+    public String getStudNationalId() {
         return studNationalId;
     }
 
-    public void setStudNationalId(int studNationalId) {
+    public void setStudNationalId(String studNationalId) {
         this.studNationalId = studNationalId;
     }
 

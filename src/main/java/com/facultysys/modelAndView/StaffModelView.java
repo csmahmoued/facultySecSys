@@ -8,7 +8,16 @@ public class StaffModelView {
     private String staffPhone;
     private String staffType;
     private String staffDegree;
+    private String deptName;
     private String deptId;
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
 
     public String getDeptId() {
         return deptId;

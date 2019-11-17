@@ -12,8 +12,26 @@ public class CourseModelView {
     private  String courseYear;
     @NotNull(message = "department id can not be null")
     private String  deptId;
+    private String deptName;
     @NotNull(message = "staff id can not be null")
     private String  staffId;
+    private String  staffName;
+
+    public String getDeptName() {
+        return deptName;
+    }
+
+    public void setDeptName(String deptName) {
+        this.deptName = deptName;
+    }
+
+    public String getStaffName() {
+        return staffName;
+    }
+
+    public void setStaffName(String staffName) {
+        this.staffName = staffName;
+    }
 
     public String getCourseId() {
         return courseId;

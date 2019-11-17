@@ -11,30 +11,30 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/fci/depart")
 public class DepartmentController {
 
     @Autowired
     private DepartmentService departmentService;
 
-    @GetMapping("/all-department")
+    @GetMapping("/public/all-department")
     public List<Department> AllDepartment(){
 
         return departmentService.getAllDepartment();
     }
 
-    @GetMapping("/department/{id}")
+    @GetMapping("/public/department/{id}")
     public ResponseEntity<Department> getDept(@PathVariable int id){
         return new ResponseEntity<>(departmentService.getDepartment(id),HttpStatus.OK) ;
     }
 
-    @PostMapping("/add-department")
+    @PostMapping("/admin/add-department")
     public ResponseEntity<Department> addDept(@Valid @RequestBody  Department department){
         departmentService.addDepartment(department);
         return new ResponseEntity<>(HttpStatus.CREATED) ;
     }
 
-    @DeleteMapping("/del-department/{id}")
+    @DeleteMapping("/admin/del-department/{id}")
     public  ResponseEntity<Void> delDept(@PathVariable int id){
         departmentService.deleteDepartment(id);
        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT) ;

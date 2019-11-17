@@ -18,38 +18,36 @@ import java.net.http.HttpClient;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/fci/degree")
 public class Degrees {
 
     @Autowired
     private DegreeService degreeService;
 
-
-
-    @GetMapping("/all-degrees")
+    @GetMapping("/admin/all-degrees")
     public List<DegreeCourseModelView> getall(){
 
         return degreeService.getAllDegree();
     }
 
-    @GetMapping("/student-degree/{id}")
+    @GetMapping("/student/student-degree/{id}")
     public ResponseEntity<List<DegreeCourseModelView>> studentDegrees(@PathVariable int id){
          Student  student =new Student(id);
         return new ResponseEntity<>(degreeService.getStudentDegree(student),HttpStatus.OK) ;
     }
-    @GetMapping("/student-total-degree/{id}")
+    @GetMapping("/student/student-total-degree/{id}")
     public String getTotalDegree(@PathVariable int id){
         return degreeService.getStudentTotalDegree(id);
     }
 
-    @PostMapping("/add-degree")
+    @PostMapping("/admin/add-degree")
     public ResponseEntity<CourseDegree> addDegrees(@RequestBody DegreeCourseModelView degreeCourseModelView){
         degreeService.addDegree(degreeCourseModelView);
 
         return new ResponseEntity<CourseDegree>(HttpStatus. CREATED);
     }
 
-    @DeleteMapping("/del-degree/{id}")
+    @DeleteMapping("/admin/del-degree/{id}")
     public ResponseEntity<Void> delDegree(@PathVariable int id){
         degreeService.deleteCourseDegree(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

@@ -29,7 +29,7 @@ public class StaffService {
 
     public List<StaffModelView> getAllStaffInfoByType(String type ){
         try {
-            var staff=staffRepository.findByStaffType(type);
+            var staff=staffRepository.findByStaffTypeContains(type);
             var staffModel=staff.stream().map(st ->mapper.covertToStaffModelView(st)).collect(Collectors.toList());
             return staffModel;
 
@@ -54,7 +54,7 @@ public class StaffService {
 
     public StaffModelView getStaffByName(String name){
         try {
-            var staff=staffRepository.findByStaffName(name);
+            var staff=staffRepository.findByStaffNameContains(name);
             var staffModel=mapper.covertToStaffModelView(staff);
             return staffModel;
         }catch (NoSuchElementException e){

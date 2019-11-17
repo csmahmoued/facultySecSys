@@ -5,10 +5,19 @@ public class DegreeCourseModelView {
 
     private  int id;
     private double degree;
-    private int studpid;
+    private String studpid;
     private int courseid;
     private String coursename;
+    private String  studName;
     private String mdegree;
+
+    public String getStudName() {
+        return studName;
+    }
+
+    public void setStudName(String studName) {
+        this.studName = studName;
+    }
 
     public String getMdegree() {
         return mdegree;
@@ -42,11 +51,11 @@ public class DegreeCourseModelView {
         this.degree = degree;
     }
 
-    public int getStudpid() {
+    public String getStudpid() {
         return studpid;
     }
 
-    public void setStudpid(int studpid) {
+    public void setStudpid(String studpid) {
         this.studpid = studpid;
     }
 

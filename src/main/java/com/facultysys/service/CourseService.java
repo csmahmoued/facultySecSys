@@ -22,11 +22,34 @@ public class CourseService {
     @Autowired
     private CourseRepository courseRepository;
 
+    @Autowired
+    private DepartmentService departmentService;
+
     public List<CourseModelView> getAllCourse(){
         var courses=courseRepository.findAll();
         var courseModel=courses.stream().map(courses1 -> mapper.convetToCourseViewModel(courses1)).collect(Collectors.toList());
         return courseModel;
     }
+
+    public List<CourseModelView> getAllCourseByDepartment(String dname){
+        var department=departmentService.getDepartmentByName(dname);
+        var courses=courseRepository.findByDepartment(department);
+        var courseModel=courses.stream().map(courses1 -> mapper.convetToCourseViewModel(courses1)).collect(Collectors.toList());
+        return courseModel;
+    }
+
+    public List<CourseModelView> getAllCourseByTer(String term){
+        var courses=courseRepository.findByCourseTerm(term);
+        var courseModel=courses.stream().map(courses1 -> mapper.convetToCourseViewModel(courses1)).collect(Collectors.toList());
+        return courseModel;
+    }
+
+    public List<CourseModelView> getAllCourseByYear(String Year){
+        var courses=courseRepository.findByCourseYear(Year);
+        var courseModel=courses.stream().map(courses1 -> mapper.convetToCourseViewModel(courses1)).collect(Collectors.toList());
+        return courseModel;
+    }
+
 
     public CourseModelView getCourse(int id){
         try {
